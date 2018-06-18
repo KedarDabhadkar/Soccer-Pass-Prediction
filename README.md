@@ -5,14 +5,6 @@ The dataset can be obtained from https://github.com/JanVanHaaren/mlsa18-pass-pre
 
 README.md of the parent file says:
 
-# MLSA18 Football Pass Prediction Challenge
-
-This repository contains the instructions and dataset for the Football Pass Prediction Challenge of the 5th Workshop on Machine Learning and Data Mining for Sports Analytics. The workshop will be held on Monday September 10th 2018 in Dublin as part of the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases. Further information on the workshop is available on the [workshop website](https://dtai.cs.kuleuven.be/events/MLSA18/).
-
-## Challenge
-
-The goal of this challenge is to predict the receiver of a pass performed during a football match given the sender of the pass as well as the locations of all the players on the pitch. The focus of this challenge is on developing novel approaches to address this task.
-
 ## Dataset
 
 The dataset contains 12,124 passes performed during 14 different games involving a Belgian football club during the 2014/2015 football season.
