@@ -31,7 +31,3 @@ The coordinates are expressed in centimeters in both directions of the pitch. Th
 - `(-5250, 3400)`: bottom-left corner of the pitch;
 - `(5250, -3400)`: top-right corner of the pitch;
 - `(5250, 3400)`: bottom-right corner of the pitch.
-
-## Contact
-
-If you have any questions, suggestions or remarks, then please get in touch with Jan Van Haaren (j.vanhaaren@scisports.com). If you plan to participate in the challenge and submit a paper to the workshop, then please inform Jan Van Haaren as well. He will get in touch whenever any important information regarding the challenge would become available.
