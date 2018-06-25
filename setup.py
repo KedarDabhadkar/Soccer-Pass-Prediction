@@ -29,7 +29,7 @@ def distance(data,index,P1,P2):
     #'Gives distance between players P1 and P2 at index ''index'' in data''
     return np.sqrt((get_loc(data,index,P1)[0]-get_loc(data,index,P2)[0])**2 + (get_loc(data,index,P1)[1]-get_loc(data,index,P2)[1])**2)
 
-def map_player(data,index):
+def map_player(data,index,all_players=True):
     #'Maps and sorts each player position as distance from sender at the instant of index'
     index = int(index)
     sender = data.sender[index] #id of sender player
@@ -44,17 +44,18 @@ def map_player(data,index):
         
         mapp=sorted(mapp.items(), key=operator.itemgetter(1))
         
-        li={}
-        
-        for i in range(15,29):
-            text = 'P'+str(i)
-            player_loc = data.loc[index,text]
-            if (np.isfinite(player_loc[0])) and i!=sender:
-                li[i]=distance(data,index,'P'+str(sender),text)
+        if all_players:        
+            li={}
                 
-        li=sorted(li.items(), key=operator.itemgetter(1))
-        
-        mapp.extend(li)
+            for i in range(15,29):
+                text = 'P'+str(i)
+                player_loc = data.loc[index,text]
+                if (np.isfinite(player_loc[0])) and i!=sender:
+                    li[i]=distance(data,index,'P'+str(sender),text)
+                    
+            li=sorted(li.items(), key=operator.itemgetter(1))
+            
+            mapp.extend(li)
                 
     elif sender > 14:
         for i in range(15,29):
@@ -65,35 +66,19 @@ def map_player(data,index):
         
         mapp=sorted(mapp.items(), key=operator.itemgetter(1))
         
-        li={}
+        if all_players:     
         
-        for i in range(1,15):
-            text = 'P'+str(i)
-            player_loc = data.loc[index,text]
-            if (np.isfinite(player_loc[0])) and i!=sender:
-                li[i]=distance(data,index,'P'+str(sender),text)
-                
-        li=sorted(li.items(), key=operator.itemgetter(1))
-        
-        mapp.extend(li)
+            li={}
+            
+            for i in range(1,15):
+                text = 'P'+str(i)
+                player_loc = data.loc[index,text]
+                if (np.isfinite(player_loc[0])) and i!=sender:
+                    li[i]=distance(data,index,'P'+str(sender),text)
+                    
+            li=sorted(li.items(), key=operator.itemgetter(1))
+            
+            mapp.extend(li)
             
     return mapp
 
-def make_feature(data,index):
-    index = int(index)
-    mapp = map_player(data,index)
-    receiver = data.receiver[index]
-    
-    id_list=[]
-    dist_list=[]    
-    
-    for element in mapp:
-        dist_list.append(element[1])
-        id_list.append(element[0])
-        
-    x = np.array(dist_list)
-       
-    y = np.zeros((1,21))
-    y[0,id_list.index(receiver)] = 1
-
-    return x,y

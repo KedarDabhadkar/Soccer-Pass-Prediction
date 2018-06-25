@@ -8,6 +8,7 @@ Created on Sun Jun 24 20:41:54 2018
 import numpy as np
 import pandas as pd
 import operator
+from setup import *
 
 def transform(file):
     #Transforms the columns in the original file to include player locations as tuple
@@ -38,3 +39,25 @@ def change_type(col):
         ele = ele.split(',')
         newcol.append((float(ele[1]),float(ele[3])))
     return newcol
+
+def make_feature(data,index,all_players=True):
+    index = int(index)
+    mapp = map_player(data,index,all_players)
+    receiver = data.receiver[index]
+    
+    id_list=[]
+    dist_list=[]    
+    
+    for element in mapp:
+        dist_list.append(element[1])
+        id_list.append(element[0])
+        
+    x = np.array(dist_list)
+    
+    if all_players:       
+        y = np.zeros((1,21))
+    else:
+        y = np.zeros((1,10))
+    y[0,id_list.index(receiver)] = 1
+
+    return x,y
